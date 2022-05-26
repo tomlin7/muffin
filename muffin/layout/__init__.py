@@ -1,6 +1,7 @@
 import tkinter as tk
 
-from components import Editor
+from .base import Base
+from components import Statusbar
 
 
 class Layout(tk.Frame):
@@ -8,5 +9,8 @@ class Layout(tk.Frame):
         super().__init__(master, *args, **kwargs)
         self.master = master
 
-        self.editor = Editor(self)
-        self.editor.pack(expand=1, fill=tk.BOTH)
+        self.base = Base(self)
+        self.base.pack(expand=1, fill=tk.BOTH)
+
+        self.statusbar = Statusbar(self)
+        self.statusbar.pack(fill=tk.X)
