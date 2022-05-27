@@ -1,11 +1,24 @@
 import tkinter as tk
 
 
-class StatusbarItem(tk.Frame):
-    def __init__(self, master, name, *args, **kwargs):
+class Section(tk.Text):
+    def __init__(self, master, text=None, justify=tk.LEFT, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
-        self.name = name
+        self.text = text
+        self.justify = justify
+        
+        self.tag_config('justify', justify=justify)
+        self.update(*text)
+    
+    def update(self, *args):
+        self.text = " | ".join(args)
 
-        self.label = tk.Label(self, text=name, bg='white', padx=2)
-        self.label.pack(fill=tk.BOTH)
+        self.config(state=tk.NORMAL)
+        self.delete('1.0', tk.END)
+        self.insert('1.0', self.text, 'justify')
+
+        self.config(width=len(self.text), state=tk.DISABLED)
+    
+    def refresh_geometry(self):
+        self.config(width=len(self.text))
