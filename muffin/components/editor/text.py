@@ -9,3 +9,14 @@ class Text(tk.Text):
         self.master = master
 
         self.percolator = Percolator(self)
+    
+    def write(self, text):
+        self.insert('1.0', text)
+    
+    def clear(self):
+        self.delete('1.0', tk.END)
+
+    def readfile(self, path):
+        self.clear()
+        with open(path, 'w') as fp:
+            self.write(fp.read())

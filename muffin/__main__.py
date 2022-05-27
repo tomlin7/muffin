@@ -1,10 +1,12 @@
 import tkinter as tk
 
 from layout import Layout
+from utils import Binder
 
 root = tk.Tk()
 
-layout = Layout(root)
-layout.pack(expand=1, fill=tk.BOTH)
+root.layout = Layout(root)
+root.layout.pack(expand=1, fill=tk.BOTH)
 
+Binder(root)
 root.mainloop()

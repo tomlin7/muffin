@@ -14,9 +14,9 @@ class Statusbar(tk.Frame):
         self.left.config(relief=tk.FLAT, height=1, padx=5)
         self.left.pack(side=tk.LEFT)
 
-        self.right = Section(self, text=("branch",), justify=tk.RIGHT)
+        self.right = Section(self, text=(" branch ",), justify=tk.RIGHT)
         self.right.config(relief=tk.FLAT, height=1, padx=5)
         self.right.pack(side=tk.RIGHT)
 
-        self.right.update("Python", "UTF-8", "Ln y, Col x")
-        self.left.update("branch")
+        self.right.update(" Python ", " UTF-8 ", " Ln y, Col x ")
+        self.left.update(" branch ")

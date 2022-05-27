@@ -34,3 +34,6 @@ class Editor(tk.Frame):
     def scroll(self, *args):
         self.scrollbar.set(*args)
         self._scrollbar('moveto', args[0])
+
+    def openfile(self, path):
+        self.text.readfile(path)
