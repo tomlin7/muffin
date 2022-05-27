@@ -18,5 +18,6 @@ class Text(tk.Text):
 
     def readfile(self, path):
         self.clear()
-        with open(path, 'w') as fp:
+        print(path)
+        with open(path, 'r') as fp:
             self.write(fp.read())

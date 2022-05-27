@@ -7,7 +7,7 @@ class Binder:
         self.events = Events(self.master)
 
     def bind_all(self):
-        self.bind('<Control-o>', self.events.open)
+        self.bind('<Control-o>', self.events.openfile)
 
     def bind(self, event, function):
         self.master.bind(event, function)

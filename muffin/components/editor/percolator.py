@@ -1,5 +1,5 @@
+from .colordelegator import ColorDelegator
 from idlelib.percolator import Percolator as _Percolator
-from idlelib.colorizer import ColorDelegator
 
 
 class Percolator(_Percolator):

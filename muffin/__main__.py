@@ -8,5 +8,5 @@ root = tk.Tk()
 root.layout = Layout(root)
 root.layout.pack(expand=1, fill=tk.BOTH)
 
-Binder(root)
+Binder(root).bind_all()
 root.mainloop()
