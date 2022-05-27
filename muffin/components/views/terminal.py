@@ -23,14 +23,13 @@ class Terminal(View):
         self.boldfont.configure(weight='bold')
         self.text.tag_config('bold', font=self.boldfont)
 
-        self.refresh_linestart()
         self.text.tag_config('prompt', foreground='grey')
         asyncio.run(self.show_prompt())
 
         self.text.bind('<Return>', self.enter)
     
     def get_command(self):
-        return self.text.get(self.line_start, tk.END)
+        return self.text.get(self.line_start, tk.END).rstrip()
     
     def enter(self, *_):
         self.run(self.get_command())
@@ -44,15 +43,18 @@ class Terminal(View):
             cmd,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE)
-
         stdout, stderr = await proc.communicate()
 
-        self.write(f'\n[{cmd!r} exited with {proc.returncode}]\n')
+        self.newline()
+        self.write(f'[{cmd!r} exited with {proc.returncode}]')
         if stdout:
-            self.write(('[stdout]', 'bold'), f'\n{stdout.decode().rstrip()}\n')
+            self.newline()
+            self.write(('[stdout] ', 'bold'), f'{stdout.decode().rstrip()}')
         if stderr:
-            self.write(('[stderr]', 'bold'), f'\n{stderr.decode().rstrip()}\n')
+            self.newline()
+            self.write(('[stderr] ', 'bold'), f'{stderr.decode().rstrip()}')
         
+        self.newline()
         await self.show_prompt()
     
     async def show_prompt(self):
@@ -66,8 +68,12 @@ class Terminal(View):
         self.refresh_linestart()
     
     def refresh_linestart(self):
-        self.line_start = self.text.index(tk.END)
+        self.line_start = self.text.index(tk.INSERT)
+        print(self.line_start)
         self.text.see(self.line_start)
+    
+    def newline(self):
+        self.write('\n')
 
     def write(self, *args):
         for i in args:

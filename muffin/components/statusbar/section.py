@@ -9,10 +9,11 @@ class Section(tk.Text):
         self.justify = justify
         
         self.tag_config('justify', justify=justify)
-        self.update(*text)
+        if text:
+            self.update(*text)
     
     def update(self, *args):
-        self.text = " | ".join(args)
+        self.text = "|".join(args)
 
         self.config(state=tk.NORMAL)
         self.delete('1.0', tk.END)
