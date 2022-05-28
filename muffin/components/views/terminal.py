@@ -3,12 +3,15 @@ import tkinter as tk
 from tkinter import font
 
 from .view import View
+from ..utils import Fonts
 
 
 class Terminal(View):
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
+
+        fonts = Fonts(self)
 
         self.text = tk.Text(self)
         self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT)
@@ -19,9 +22,8 @@ class Terminal(View):
         self.text.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.text.yview)
 
-        self.boldfont = font.nametofont('TkDefaultFont')
-        self.boldfont.configure(weight='bold')
-        self.text.tag_config('bold', font=self.boldfont)
+        self.text.tag_config('normal', font=fonts.normal)
+        self.text.tag_config('bold', font=fonts.bold)
 
         self.text.tag_config('prompt', foreground='grey')
         asyncio.run(self.show_prompt())
@@ -69,7 +71,6 @@ class Terminal(View):
     
     def refresh_linestart(self):
         self.line_start = self.text.index(tk.INSERT)
-        print(self.line_start)
         self.text.see(self.line_start)
     
     def newline(self):
