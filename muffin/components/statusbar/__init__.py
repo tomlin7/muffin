@@ -8,7 +8,7 @@ class Statusbar(tk.Frame):
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
-        self.config(bd=1, relief=tk.SUNKEN, bg='white')
+        self.config(bd=1, bg='white')
 
         self.left = Section(self, text=(" Python ", " UTF-8 ", " Ln y, Col x "))
         self.left.config(relief=tk.FLAT, height=1, padx=5)

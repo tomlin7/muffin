@@ -13,11 +13,11 @@ class Terminal(View):
 
         fonts = Fonts(self)
 
-        self.text = tk.Text(self)
+        self.text = tk.Text(self, relief=tk.FLAT)
         self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT)
 
         self.scrollbar = tk.Scrollbar(self)
-        self.scrollbar.pack(fill=tk.Y, side=tk.LEFT)
+        self.scrollbar.pack(fill=tk.Y, side=tk.LEFT, padx=(1, 0))
         
         self.text.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.text.yview)

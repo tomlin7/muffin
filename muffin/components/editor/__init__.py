@@ -8,17 +8,19 @@ class Editor(tk.Frame):
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
+        self.config(bg='#a0a0a0', bd=1)
 
         self.linenumbers = Linenumbers(self)
         self.linenumbers.config(yscrollcommand=self.scroll)
         self.linenumbers.pack(fill=tk.Y, side=tk.LEFT)
 
         self.text = Text(self)
-        self.text.config(yscrollcommand=self.scroll)
-        self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT)
+        self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT, padx=(1, 0))
 
         self.scrollbar = tk.Scrollbar(self)
-        self.scrollbar.pack(fill=tk.Y, side=tk.LEFT)
+        self.scrollbar.pack(fill=tk.Y, side=tk.LEFT, padx=(1, 0))
+
+        self.text.config(yscrollcommand=self.scroll)
         self.scrollbar.config(command=self._scrollbar)
 
         self.linenumbers.attach(self.text)

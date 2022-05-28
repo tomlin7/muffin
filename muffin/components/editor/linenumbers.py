@@ -7,7 +7,7 @@ class Linenumbers(tk.Text):
         self.master = master
         self.text = textw
         
-        self.config(width=5)
+        self.config(width=5, relief=tk.FLAT)
 
     def attach(self, text):
         self.text = text

@@ -7,6 +7,7 @@ class Section(tk.Text):
         self.master = master
         self.text = text
         self.justify = justify
+        self.config(relief=tk.FLAT)
         
         self.tag_config('justify', justify=justify)
         if text:

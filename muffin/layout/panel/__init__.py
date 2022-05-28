@@ -58,6 +58,6 @@ class Panel(tk.Frame):
     def set_active_view(self, view):
         "Set active view and active tab."
         self.active_view = view
-        for view in self.views:
-            view.pack_forget()
+        for _view in self.views:
+            _view.pack_forget()
         view.pack(fill=tk.BOTH)
