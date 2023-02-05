@@ -4,19 +4,9 @@ from .tabs import Tabs
 from components.views import *
 
 
-class Panel(tk.Frame):
+class Sidebar(tk.Frame):
     """
-    Panel can hold views.
-
-    +---------------------------------+
-    | Logs | Terminal |               |
-    +---------------------------------+
-    | \    \    \    \    \    \    \ |
-    |  \    \    \    \    \    \    \|
-    |   \    \    \    \    \    \    |
-    |    \    \    \    \    \    \   |
-    |\    \    \    \    \    \    \  |
-    +---------------------------------+
+    Sidebar can hold views.
     """
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -24,12 +14,12 @@ class Panel(tk.Frame):
         self.pack_propagate(False)
 
         self.tabs = Tabs(self)
-        self.tabs.pack(expand=1, fill=tk.BOTH)
+        self.tabs.pack(fill=tk.X)
 
         self.active_view = None
         self.views = []
 
-        self.default_views = [Logs(self), Terminal(self)]
+        self.default_views = [Explorer(self), Logs(self), Terminal(self)]
         self.add_views(self.default_views)
 
     def add_views(self, views):
@@ -60,7 +50,7 @@ class Panel(tk.Frame):
         self.active_view = view
         for _view in self.views:
             _view.pack_forget()
-        view.pack(fill=tk.BOTH)
+        view.pack(fill=tk.BOTH, expand=True)
     
     def get_logger(self):
         return self.default_views[0]

@@ -18,8 +18,10 @@ class Tab(tk.Menubutton):
     def deselect(self, *_):
         if self.selected:
             self.selected = False
+            self.config(bg="#ececec")
         
     def select(self, *_):
         if not self.selected:
             self.selected = True
+            self.config(bg="white")
         self.master.set_active_tab(self.view)

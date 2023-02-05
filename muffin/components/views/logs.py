@@ -1,7 +1,6 @@
 import inspect
 import tkinter as tk
 
-from tkinter import font
 from datetime import datetime
 
 from .view import View
@@ -53,42 +52,38 @@ class Logs(View):
         self.text.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.text.yview)
 
-        self.boldfont = font.nametofont('TkDefaultFont')
-        self.boldfont.configure(weight='bold')
-
         self.text.tag_config('time', foreground="#008000")
         self.text.tag_config('caller', foreground="#0000ff")
 
         self.text.tag_config('info', foreground="#098677")
         self.text.tag_config('warning', foreground="#a31515")
-        self.text.tag_config('error', foreground="#ab1515", font=self.boldfont)
+        self.text.tag_config('error', foreground="#ab1515", font=('Courier New', 10, 'bold'))
 
     def write(self, *args):
+        self.text.config(state=tk.NORMAL)
         for i in args:
             if isinstance(i, tuple):
                 self.text.insert(tk.END, i[0], i[1])
             else:
                 self.text.insert(tk.END, i)
+        self.text.config(state=tk.DISABLED)
     
     def newline(self):
         self.write('\n')
-    
-    def _padtext(self, text, pad=1):
-        return f'{0}{1}{0}'.format(' '*pad, text)
 
     def log(self, type, caller, text):
         self.write(
             '[', (datetime.now(), 'time'), ']', 
-            self._padtext(type), 
+            type, 
             '[', (caller, 'caller'), f']: {text}'
         )
         self.newline()
 
     def info(self, text):
-        self.log(('[info]', 'info'), caller_name(), text)
+        self.log((' [info] ', 'info'), caller_name(), text)
     
     def warning(self, text):
-        self.log(('[warning]', 'warning'), caller_name(), text)
+        self.log((' [warning] ', 'warning'), caller_name(), text)
     
     def error(self, text):
-        self.log(('[error]', 'error'), caller_name(), text)
+        self.log((' [error] ', 'error'), caller_name(), text)

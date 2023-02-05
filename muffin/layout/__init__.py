@@ -14,3 +14,6 @@ class Layout(tk.Frame):
 
         self.statusbar = Statusbar(self)
         self.statusbar.pack(fill=tk.X)
+
+        self.logger = self.base.panel.get_logger()
+        self.terminal = self.base.panel.get_terminal()

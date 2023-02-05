@@ -21,3 +21,4 @@ class Text(tk.Text):
         self.clear()
         with open(path, 'r') as fp:
             self.write(fp.read())
+
