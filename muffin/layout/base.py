@@ -9,8 +9,8 @@ class Base(tk.Frame):
         super().__init__(master, *args, **kwargs)
         self.master = master
 
-        self.editor = Content(self)
-        self.editor.pack(expand=1, fill=tk.BOTH)
+        self.content = Content(self)
+        self.content.pack(expand=1, fill=tk.BOTH)
 
         self.panel = Panel(self)
         self.panel.config(height=250)
