@@ -1,4 +1,4 @@
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 
 import tkinter as tk
@@ -15,8 +15,7 @@ root.layout = Layout(root)
 root.layout.pack(expand=1, fill=tk.BOTH)
 
 Binder(root).bind_all()
-root.layout.logger.info(f"Initialized muffin {__version__}")
-root.layout.logger.warning(f"you good?")
-root.layout.logger.error(f"no")
+root.layout.logger.info(f"Initialized Muffin {__version__}")
+root.layout.notifications.info(f"Welcome to Muffin {__version__} 🧁")
 
 root.mainloop()

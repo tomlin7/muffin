@@ -42,8 +42,9 @@ class Logs(View):
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
+        self.symbol = "💠"
 
-        self.text = tk.Text(self, relief=tk.FLAT)
+        self.text = tk.Text(self, relief=tk.FLAT, font=("FixedSys", 15))
         self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT)
 
         self.scrollbar = tk.Scrollbar(self)
@@ -52,12 +53,12 @@ class Logs(View):
         self.text.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.text.yview)
 
-        self.text.tag_config('time', foreground="#008000")
-        self.text.tag_config('caller', foreground="#0000ff")
+        self.text.tag_config('time', foreground="#989898")
+        self.text.tag_config('caller', foreground="#636363")
 
-        self.text.tag_config('info', foreground="#098677")
-        self.text.tag_config('warning', foreground="#a31515")
-        self.text.tag_config('error', foreground="#ab1515", font=('Courier New', 10, 'bold'))
+        self.text.tag_config('info', foreground="#C9C9C9")
+        self.text.tag_config('warning', foreground="#949494")
+        self.text.tag_config('error', background="#515151", foreground="#C9C9C9")
 
     def write(self, *args):
         self.text.config(state=tk.NORMAL)
@@ -74,16 +75,16 @@ class Logs(View):
     def log(self, type, caller, text):
         self.write(
             '[', (datetime.now(), 'time'), ']', 
-            type, 
+            ' ', type, ' ', 
             '[', (caller, 'caller'), f']: {text}'
         )
         self.newline()
 
     def info(self, text):
-        self.log((' [info] ', 'info'), caller_name(), text)
+        self.log(('[ info    ]', 'info'), caller_name(), text)
     
     def warning(self, text):
-        self.log((' [warning] ', 'warning'), caller_name(), text)
+        self.log(('[ warning ]', 'warning'), caller_name(), text)
     
     def error(self, text):
-        self.log((' [error] ', 'error'), caller_name(), text)
+        self.log(('[ error   ]', 'error'), caller_name(), text)

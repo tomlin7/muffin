@@ -8,8 +8,9 @@ class Terminal(View):
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.master = master
+        self.symbol = ">_"
 
-        self.text = tk.Text(self, relief=tk.FLAT)
+        self.text = tk.Text(self, relief=tk.FLAT, font=("FixedSys", 15), fg="#4E4E4E")
         self.text.pack(expand=1, fill=tk.BOTH, side=tk.LEFT)
 
         self.scrollbar = tk.Scrollbar(self)
@@ -17,13 +18,12 @@ class Terminal(View):
         
         self.text.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.text.yview)
+        
+        self.text.tag_configure("prompt", foreground="#989898")
+        self.text.tag_configure("return", foreground="#C9C9C9")
+        self.text.tag_configure("stdfn", background="#515151", foreground="#C9C9C9")
 
-        self.text.tag_config('normal', font=('Courier New', 10))
-        self.text.tag_config('bold', font=('Courier New', 10, 'bold'))
-
-        self.text.tag_config('prompt', foreground='grey')
         asyncio.run(self.show_prompt())
-
         self.text.bind('<Return>', self.enter)
     
     def get_command(self):
@@ -44,15 +44,16 @@ class Terminal(View):
         stdout, stderr = await proc.communicate()
 
         self.newline()
-        self.write(f'[{cmd!r} exited with {proc.returncode}]')
+        self.write((f'[{cmd!r} exited with {proc.returncode}]', "return"))
         if stdout:
             self.newline()
-            self.write(('[stdout] ', 'bold'), f'{stdout.decode().rstrip()}')
+            self.write(('[stdout]', 'stdfn'), f' {stdout.decode().rstrip()}')
         if stderr:
             self.newline()
-            self.write(('[stderr] ', 'bold'), f'{stderr.decode().rstrip()}')
+            self.write(('[stderr]', 'stdfn'), f' {stderr.decode().rstrip()}')
         
         self.newline()
+        self.write(('⋅'*int(self.text.winfo_width()/3.05) + '\n', 'return'))
         await self.show_prompt()
     
     async def show_prompt(self):

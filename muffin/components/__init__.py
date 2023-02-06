@@ -1,3 +1,3 @@
 from .editor import Editor
-from .statusbar import Statusbar
+from .floating import Notifications
 from .utils import setup

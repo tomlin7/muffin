@@ -22,15 +22,18 @@ class Panel(tk.Frame):
         super().__init__(master, *args, **kwargs)
         self.master = master
         self.pack_propagate(False)
+        self.config(bg='#a0a0a0')
 
         self.tabs = Tabs(self)
-        self.tabs.pack(expand=1, fill=tk.BOTH)
+        self.tabs.pack(expand=1, fill=tk.BOTH, pady=(0, 1))
 
         self.active_view = None
         self.views = []
 
         self.default_views = [Logs(self), Terminal(self)]
         self.add_views(self.default_views)
+        if self.default_views:
+            self.tabs.set_active_tab(self.views[1])
 
     def add_views(self, views):
         "Append views to list. Create tabs for them."
