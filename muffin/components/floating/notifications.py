@@ -41,7 +41,7 @@ class Notifications(tk.Toplevel):
     
     def showbtn(self, *_):
         self.wm_deiconify()
-        self.after(10000, self.hide)
+        # self.after(10000, self.hide)
     
     def hide(self, *_):
         self.withdraw()
