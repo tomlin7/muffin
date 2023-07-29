@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class FloatingNotification(tk.Toplevel):
     def __init__(self, master, text):
         super().__init__(master)

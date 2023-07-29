@@ -1,5 +1,6 @@
-import io, tokenize
+import io
 import tkinter as tk
+import tokenize
 
 
 class Text(tk.Text):

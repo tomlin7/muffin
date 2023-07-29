@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from .panel import Panel
 from .content import Content
+from .panel import Panel
 
 
 class Base(tk.Frame):

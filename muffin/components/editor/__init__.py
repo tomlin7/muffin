@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from .text import Text
 from .linenumbers import Linenumbers
+from .text import Text
 
 
 class Editor(tk.Frame):

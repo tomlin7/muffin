@@ -1,7 +1,8 @@
 import tkinter as tk
 
-from .sidebar import Sidebar
 from components import Editor
+
+from .sidebar import Sidebar
 
 
 class Content(tk.Frame):

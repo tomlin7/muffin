@@ -1,7 +1,8 @@
 import tkinter as tk
 
-from .section import Section
 from components import Notifications
+
+from .section import Section
 
 
 class Statusbar(tk.Frame):

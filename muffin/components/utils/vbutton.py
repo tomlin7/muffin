@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class VerticalButton(tk.Canvas):
     def __init__(self, master, text, angle=90, *args, **kwargs):
         tk.Canvas.__init__(self, master, *args, **kwargs)

@@ -3,9 +3,9 @@ __version__ = '0.4.0'
 
 import tkinter as tk
 
+from components import setup
 from layout import Layout
 from utils import Binder
-from components import setup
 
 root = tk.Tk()
 root.title("Muffin")

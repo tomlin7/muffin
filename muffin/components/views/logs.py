@@ -1,6 +1,5 @@
 import inspect
 import tkinter as tk
-
 from datetime import datetime
 
 from .view import View

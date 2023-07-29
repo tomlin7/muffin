@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class Notifications(tk.Toplevel):
     def __init__(self, master):
         super().__init__(master)

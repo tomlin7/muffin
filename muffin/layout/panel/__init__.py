@@ -1,7 +1,8 @@
 import tkinter as tk
 
-from .tabs import Tabs
 from components.views import *
+
+from .tabs import Tabs
 
 
 class Panel(tk.Frame):

@@ -2,8 +2,8 @@ import os
 import tkinter as tk
 from tkinter import ttk
 
-from .view import View
 from ..utils import DirectoryTreeWatcher
+from .view import View
 
 
 class Explorer(View):
