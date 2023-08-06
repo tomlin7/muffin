@@ -1,15 +1,15 @@
 __version__ = '0.4.0'
 
 
+import sys
 import tkinter as tk
 
-from components import setup
-from layout import Layout
-from utils import Binder
+from muffin.components import setup
+from muffin.layout import Layout
+from muffin.utils import Binder
 
 root = tk.Tk()
-root.title("Muffin")
-setup(root)
+setup(sys.argv[0], root)
 
 root.layout = Layout(root)
 root.layout.pack(expand=1, fill=tk.BOTH)

@@ -54,7 +54,7 @@ class DirectoryTreeWatcher(FileSystemEventHandler):
                     continue
                 if path in self.nodes.keys():    
                     continue
-                item = self.tree.insert(parent, "end", text=name, open=False)
+                item = self.tree.insert(parent, "end", text=name, values=[path], open=False)
                 self.nodes[path] = item
                 await self.async_update_tree(item, await self.async_scandir(path))
             else:
@@ -62,7 +62,7 @@ class DirectoryTreeWatcher(FileSystemEventHandler):
                     continue
                 if path in self.nodes.keys():    
                     continue
-                item = self.tree.insert(parent, "end", text=name)
+                item = self.tree.insert(parent, "end", text=name, values=[path])
                 self.nodes[path] = item
 
     def update_tree(self):

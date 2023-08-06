@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from components import Notifications
+from muffin.components import Notifications
 
 from .section import Section
 

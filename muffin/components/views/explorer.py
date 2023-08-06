@@ -13,7 +13,7 @@ class Explorer(View):
         self.symbol = "🔷"
 
         self.tree = ttk.Treeview(self)
-        self.tree.config(show="tree")
+        self.tree.config(show="tree", columns=('path'))
         self.tree.pack(fill=tk.BOTH, side=tk.LEFT)
 
         style = ttk.Style()
@@ -27,11 +27,11 @@ class Explorer(View):
         self.scrollbar = tk.Scrollbar(self)
         self.scrollbar.pack(fill=tk.Y, side=tk.LEFT, padx=(1, 0))
     
-        self.tree.bind('<Double-1>', self.open_file)
+        self.tree.bind('<Double-1>', self.openfile)
 
-    def open_file(self, event):
+    def openfile(self, event):
         item = self.tree.focus()
-        filepath = self.tree.item(item)['values'][0]
+        path = self.tree.set(item, 'path')
 
-        # if os.path.isfile(filepath):
-        #     self.master.master.editor.openfile(filepath)
+        if os.path.isfile(path):
+            self.master.master.editor.openfile(path)

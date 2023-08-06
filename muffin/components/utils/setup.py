@@ -1,6 +1,9 @@
+import os, sys
 from tkextrafont import Font
 
 
-def setup(master):
-    font_fs = Font(file="muffin/assets/fonts/FSEX302.ttf", family="FixedSys")
-    #font_fc = Font(file="muffin/assets/fonts/FiraCode.ttf", family="FiraCode")
+def setup(path, root):
+    resdir = os.path.join(getattr(sys, "_MEIPASS", os.path.dirname(path)), "assets")
+    root.title("Muffin")
+    root.iconbitmap(os.path.join(resdir, 'icon.ico'))
+    Font(file=os.path.join(resdir, "FSEX302.ttf"), family="FixedSys")

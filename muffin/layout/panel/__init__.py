@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from components.views import *
+from muffin.components.views import *
 
 from .tabs import Tabs
 

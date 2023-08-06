@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from components import Editor
+from muffin.components import Editor
 
 from .sidebar import Sidebar
 
