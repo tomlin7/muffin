@@ -1,4 +1,4 @@
-name: "Nightly Builds Linux  (main)"
+name: "Nightly Builds Mac"
 on:
   push:
     branches: [ "main" ]
@@ -8,8 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '(nightly)')
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
